@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wangguan1024.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="es6中与变量相关的各类知识点let 和 var的区别变量提升如果你编写一个声明并初始化变量的多行 JavaScript 程序，你可以在初始化一个变量之后再用 var 声明它，它仍然可以工作。但是提升操作并不能适用于let，这是一件好事，因为先初始化后声明会让代码混乱。 多次声明当使用var时，可以根据需要多次声明相同名称的变量，但是let不能。 123456789101112&#x2F;&#x2F;合法var my">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js基础知识复习1——变量">
+<meta property="og:url" content="https://wangguan1024.github.io/2021/05/09/%E5%89%8D%E7%AB%AF/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/js%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A01%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F/index.html">
+<meta property="og:site_name" content="王冠的技术博客">
+<meta property="og:description" content="es6中与变量相关的各类知识点let 和 var的区别变量提升如果你编写一个声明并初始化变量的多行 JavaScript 程序，你可以在初始化一个变量之后再用 var 声明它，它仍然可以工作。但是提升操作并不能适用于let，这是一件好事，因为先初始化后声明会让代码混乱。 多次声明当使用var时，可以根据需要多次声明相同名称的变量，但是let不能。 123456789101112&#x2F;&#x2F;合法var my">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-09T07:11:23.000Z">
+<meta property="article:modified_time" content="2022-04-27T07:28:08.204Z">
+<meta property="article:author" content="王冠">
+<meta property="article:tag" content="技术博客 计算机技术 编程 Blog Java Python Golang Vue React">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wangguan1024.github.io/2021/05/09/%E5%89%8D%E7%AB%AF/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/js%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A01%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wangguan1024.github.io/2021/05/09/%E5%89%8D%E7%AB%AF/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/js%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A01%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F/","path":"2021/05/09/前端/基础知识/js基础知识复习1——变量/","title":"js基础知识复习1——变量"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>js基础知识复习1——变量 | 王冠的技术博客</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">王冠的技术博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Write the code, change the world.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#es6%E4%B8%AD%E4%B8%8E%E5%8F%98%E9%87%8F%E7%9B%B8%E5%85%B3%E7%9A%84%E5%90%84%E7%B1%BB%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">es6中与变量相关的各类知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#let-%E5%92%8C-var%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.</span> <span class="nav-text">let 和 var的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87"><span class="nav-number">1.1.1.</span> <span class="nav-text">变量提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%AC%A1%E5%A3%B0%E6%98%8E"><span class="nav-number">1.1.2.</span> <span class="nav-text">多次声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.1.3.</span> <span class="nav-text">块级作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%E6%89%80%E8%BF%B0"><span class="nav-number">1.1.4.</span> <span class="nav-text">综上所述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">变量的数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">基本数据类型:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%EF%BC%88Object%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">对象类型（Object）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReferenceError-undefined-Null-NaN%E5%8C%BA%E5%88%86"><span class="nav-number">1.3.</span> <span class="nav-text">ReferenceError, undefined, Null, NaN区分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ReferenceError"><span class="nav-number">1.3.1.</span> <span class="nav-text">ReferenceError</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.2.</span> <span class="nav-text">undefined</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.3.</span> <span class="nav-text">null</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NaN"><span class="nav-number">1.3.4.</span> <span class="nav-text">NaN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Eundefined%E5%92%8Cnull%E5%8C%BA%E5%88%86%E7%9A%84%E7%BB%88%E6%9E%81%E8%A7%A3%E9%87%8A"><span class="nav-number">1.3.5.</span> <span class="nav-text">关于undefined和null区分的终极解释</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">王冠</p>
+  <div class="site-description" itemprop="description">王冠的技术博客 计算机技术 编程 Blog Java Python Golang Vue React</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wangguan1024" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wangguan1024" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/wangguan1024" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangguan1024.github.io/2021/05/09/%E5%89%8D%E7%AB%AF/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/js%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A01%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王冠">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王冠的技术博客">
+      <meta itemprop="description" content="王冠的技术博客 计算机技术 编程 Blog Java Python Golang Vue React">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="js基础知识复习1——变量 | 王冠的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          js基础知识复习1——变量
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-09 15:11:23" itemprop="dateCreated datePublished" datetime="2021-05-09T15:11:23+08:00">2021-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-27 15:28:08" itemprop="dateModified" datetime="2022-04-27T15:28:08+08:00">2022-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="es6中与变量相关的各类知识点"><a href="#es6中与变量相关的各类知识点" class="headerlink" title="es6中与变量相关的各类知识点"></a>es6中与变量相关的各类知识点</h1><h2 id="let-和-var的区别"><a href="#let-和-var的区别" class="headerlink" title="let 和 var的区别"></a>let 和 var的区别</h2><h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>如果你编写一个声明并初始化变量的多行 JavaScript 程序，你可以在初始化一个变量之后再用 var 声明它，它仍然可以工作。但是提升操作并不能适用于let，这是一件好事，因为先初始化后声明会让代码混乱。</p>
+<h3 id="多次声明"><a href="#多次声明" class="headerlink" title="多次声明"></a>多次声明</h3><p>当使用var时，可以根据需要多次声明相同名称的变量，但是let不能。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//合法</span></span><br><span class="line"><span class="keyword">var</span> myName = <span class="string">&#x27;Chris&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> myName = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//非法</span></span><br><span class="line"><span class="keyword">let</span> myName = <span class="string">&#x27;Chris&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> myName = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//合法</span></span><br><span class="line"><span class="keyword">let</span> myName = <span class="string">&#x27;Chris&#x27;</span>;</span><br><span class="line">myName = <span class="string">&#x27;Bob&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h3><p>var声明的变量只能是全局或者整个函数块，而let声明的变量具有块级作用域</p>
+<h3 id="综上所述"><a href="#综上所述" class="headerlink" title="综上所述"></a>综上所述</h3><p>let是es6中的新概念，应该尽量使用let去替代var，除非业务场景要求适配IE11以下的浏览器。</p>
+<h2 id="变量的数据类型"><a href="#变量的数据类型" class="headerlink" title="变量的数据类型"></a>变量的数据类型</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型:"></a>基本数据类型:</h3><ol>
+<li>布尔值（Boolean），有2个值分别是：true 和 false</li>
+<li>数字（Number），整数或浮点数，例如： 42 或者 3.14159</li>
+<li>字符串（String），字符串是一串表示文本值的字符序列，例如：”Howdy” </li>
+<li>符号（Symbol） ( 在 ECMAScript 6 中新添加的类型)，一种实例是唯一且不可改变的数据类型</li>
+<li>null ， 一个表明 null 值的特殊关键字。 JavaScript 是大小写敏感的，因此 null 与 Null、NULL或变体完全不同。</li>
+<li>undefined ，和 null 一样是一个特殊的关键字，undefined 表示变量未赋值时的属性。<h3 id="对象类型（Object）"><a href="#对象类型（Object）" class="headerlink" title="对象类型（Object）"></a>对象类型（Object）</h3></li>
+<li>Function（函数）</li>
+<li>Array （数组）</li>
+<li>Date（日期）</li>
+<li>RegExp（正则表达式）</li>
+</ol>
+<h2 id="ReferenceError-undefined-Null-NaN区分"><a href="#ReferenceError-undefined-Null-NaN区分" class="headerlink" title="ReferenceError, undefined, Null, NaN区分"></a>ReferenceError, undefined, Null, NaN区分</h2><h3 id="ReferenceError"><a href="#ReferenceError" class="headerlink" title="ReferenceError"></a>ReferenceError</h3><p>访问一个未声明的变量，则怕抛出引用错误异常ReferenceError</p>
+<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><p>变量只声明未初始化，则其值为undefined，是一个预定义的全局变量</p>
+<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><p>用来描述“空值”，是一个特殊的对象，含义是“没有对象”，typeof(null)返回object</p>
+<h3 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h3><p>数值类型环境中 undefined 值会被转换为 NaN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a;</span><br><span class="line">a + 2;    &#x2F;&#x2F; 计算为 NaN</span><br></pre></td></tr></table></figure>
+<h3 id="关于undefined和null区分的终极解释"><a href="#关于undefined和null区分的终极解释" class="headerlink" title="关于undefined和null区分的终极解释"></a>关于undefined和null区分的终极解释</h3><p>undefined 表示一个变量自然的、最原始的状态值，而 null 则表示一个变量被人为的设置为空对象，而不是原始状态。所以，在实际使用过程中，为了保证变量所代表的语义，不要对一个变量显式的赋值 undefined，而当需要释放一个对象时，直接赋值为 null 即可。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/04/%E5%89%8D%E7%AB%AF/%E7%BB%8F%E9%AA%8C%E8%AE%B0%E5%BD%95/%E5%89%8D%E7%AB%AFunix%E6%97%B6%E9%97%B4%E6%88%B3%E8%BD%AC%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="prev" title="前端unix时间戳转为字符串">
+                  <i class="fa fa-chevron-left"></i> 前端unix时间戳转为字符串
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/05/18/%E5%89%8D%E7%AB%AF/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/js%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A02%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="next" title="js基础知识复习2——面向对象">
+                  js基础知识复习2——面向对象 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王冠</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
